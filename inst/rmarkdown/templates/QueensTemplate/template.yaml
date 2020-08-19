@@ -1,0 +1,4 @@
+name: Queens Report (pdf)
+description: >
+  Template for creating reports at Queens University of Charlotte.
+create_dir: true

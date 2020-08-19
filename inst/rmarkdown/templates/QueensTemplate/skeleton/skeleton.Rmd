@@ -1,0 +1,74 @@
+---
+title: Report Title
+author: Queens University of Charlotte
+date: \today
+params:
+  logo: logo.png
+  cover: cover.png
+  qublue: 00205b
+  qugold: a89968
+documentclass: article
+fontsize: 10
+papersize: a4paper
+output: 
+  QueensTemplate::queensReport:
+    keep_tex: TRUE
+    latex_engine: xelatex
+    resetStyleFiles: FALSE
+header-includes: 
+  - \newcommand{\logo}{`r gsub("_", "\\_", params$logo)`}
+  - \newcommand{\cover}{`r gsub("_", "\\_", params$cover)`}
+  - \newcommand{\qublue}{`r params$qublue`}
+  - \newcommand{\qugold}{`r params$qugold`}
+  - \usepackage{booktabs}
+  - \usepackage{longtable}
+  - \usepackage{array}
+  - \usepackage{multirow}
+  - \usepackage{wrapfig}
+  - \usepackage{float}
+  - \usepackage{colortbl}
+  - \usepackage{pdflscape}
+  - \usepackage{tabu}
+  - \usepackage{threeparttable}
+  - \usepackage{threeparttablex}
+  - \usepackage[normalem]{ulem}
+  - \usepackage{makecell}
+include-before:
+  - \renewcommand{\contentsname}{Table of Contents}
+---
+
+
+```{r setup, include = FALSE}
+# packages
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+
+# settings
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+
+# template based on https://github.com/INWTlab/ireports
+
+```
+
+\maketitle
+\tableofcontents
+\addcontentsline{toc}{section}{Contents}
+\clearpage
+
+\section{First Section}
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+
+\subsection{First Subsection}
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. 
+
+\section{Second Section}
+
+```{r results = "asis"}
+# for table styling detail see: https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf
+
+kable(mtcars, caption = "Demo table", booktabs = T) 
+
+```
+
+
