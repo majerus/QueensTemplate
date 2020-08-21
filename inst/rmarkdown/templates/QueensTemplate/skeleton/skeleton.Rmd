@@ -33,21 +33,39 @@ header-includes:
   - \usepackage{threeparttablex}
   - \usepackage[normalem]{ulem}
   - \usepackage{makecell}
+  - \usepackage{float}
 include-before:
   - \renewcommand{\contentsname}{Table of Contents}
 ---
 
 
 ```{r setup, include = FALSE}
+# to do
+  # add title to footer
+  # fix position of images
+
+options(scipen=999) 
+
 # packages
 library(tidyverse)
 library(knitr)
 library(kableExtra)
 
-# settings
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
-
 # template based on https://github.com/INWTlab/ireports
+
+# settings
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.pos = 'H')
+
+# plot theme
+theme_set(theme_minimal())
+
+scale_colour_discrete <- function(...) {
+  scale_colour_manual(..., values = c("#AB9C63", "#0C2B6C", "#158582", "#9E3D45"))
+}
+
+scale_fill_discrete <- function(...) {
+   scale_fill_manual(..., values = c("#AB9C63", "#0C2B6C", "#158582", "#9E3D45"))
+} 
 
 ```
 
@@ -72,3 +90,12 @@ kable(mtcars, caption = "Demo table", booktabs = T)
 ```
 
 
+\subsection{Second Subsection}
+
+```{r results = "asis"}
+
+mtcars %>% 
+  ggplot(aes(x = cyl, fill = factor(cyl))) +
+  geom_bar()
+
+```
